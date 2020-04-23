@@ -14,7 +14,7 @@ async function verUsuarios(req, res){
 		
 }
 
-// Funcion que retorna el formulario de creacionde usuario
+// Funcion que retorna el formulario de creacion de usuario
 function formularioCrearUsuario (req, res) {
 	res.render('./usuarios/crearUsuario')
 }
@@ -23,12 +23,14 @@ function formularioCrearUsuario (req, res) {
 async function crearUsuarios(req, res){
 
 	let nuevoUsuario = req.body
-	
-	try{
+	console.log(nuevoUsuario)
+
+	if(nuevoUsuario.nombre_usuario == "" || nuevoUsuario.email == "" || nuevoUsuario.usuario == "" || nuevoUsuario.contrasena == ""){
+		let error = "Por favor llena todos los campos del formulario"
+		res.render('./usuarios/crearUsuario', { error })
+	}else{
 		await UsuarioModelo.create(nuevoUsuario)
 		res.redirect('/usuarios')
-	}catch(err){
-		res.status(400).json({msj: `Error al crear el usuario: ${err}`})
 	}
 
 }
@@ -46,16 +48,32 @@ async function verUnUsuario (req, res){
 
 }
 
+// Funcion que enviw el formulario de edicion de Usuarios
+async function formEditarUsuario (req, res) {
+	let idUsuario = req.params.id
+	const usuario = await UsuarioModelo.findOne({ where: {idusuario: idUsuario} })
+	if(!usuario){
+		let error = "Error al Editar el susuario en la base de datos"
+		res.render('./usuarios/verUsuarios', { error })
+	}else{
+		res.render('./usuarios/editarUsuario', { usuario })
+	}
+}
+
 // Funcion que edita un usuario en la base de datos
 async function editarUsuario (req, res){
-	let idUsuario = req.params.id
 	let nuevosDatos = req.body
-	try{
+
+	console.log(nuevosDatos)
+
+	res.send(nuevosDatos)
+
+	/* try{
 		const nUsuario = await UsuarioModelo.update(nuevosDatos, { where: {idusuario: idUsuario} })
 		res.redirect('/usuarios')
 	}catch(err){
 		res.status(400).json({msj: `Error al actualizar en la base de datos: ${err}`})
-	}
+	} */
 
 }
 
@@ -79,4 +97,5 @@ module.exports = {
 	editarUsuario,
 	eliminarUsuario,
 	formularioCrearUsuario,
+	formEditarUsuario,
 }

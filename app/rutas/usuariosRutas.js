@@ -9,13 +9,16 @@ rutas.get('/usuarios', UsuarioControlador.verUsuarios)
 rutas.get('/usuarios/:id', UsuarioControlador.verUnUsuario)
 
 // Envia el formulario para crear un usuario
-//rutas.get('/usuarios/nuevo-usuario', UsuarioControlador.formularioCrearUsuario)
+rutas.get('/usuarios-nuevo', UsuarioControlador.formularioCrearUsuario)
 
 //Crea un usuario en la base de datos
-rutas.post('/usuarios/nuevo', UsuarioControlador.crearUsuarios)
+rutas.post('/usuarios-guardar', UsuarioControlador.crearUsuarios)
+
+// Ruta que envia el formulario de edicion del usuario
+rutas.get('/usuarios-editar/:id', UsuarioControlador.formEditarUsuario)
 
 //Edita un usuario en la base de datos
-rutas.put('/usuarios/editar/:id', UsuarioControlador.editarUsuario)
+rutas.put('/usuarios-editado', UsuarioControlador.editarUsuario)
 
 //Elimina un usuario en la base de datos
 rutas.delete('/usuarios/eliminar/:id', UsuarioControlador.eliminarUsuario)

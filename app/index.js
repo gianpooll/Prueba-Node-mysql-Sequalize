@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express')
+// Requerimos la base de datos
 require('./database')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -11,7 +12,8 @@ const Rutas_Usuario = require('./rutas/usuariosRutas')
 const Rutas_Principales = require('./rutas/principales.Rutas')
 
 const app = express()
-const port = 3000
+// Configuracion del puerto del servidor
+app.set('port', process.env.PORT || 3000)
 
 //middlewares de la aplicacion
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -31,11 +33,10 @@ app.use(Rutas_Usuario)
 app.use(Rutas_Principales)
 
 
-// Ejecución del Servidor y Base de Datos
+// Ejecución del Servidor
 function main(){
-	// Servidor
-	app.listen(3000)
-	console.log(`Servidor ejecutandose en el puerto: ${port}`)
+	app.listen(app.get('port'))
+	console.log(`Servidor ejecutandose en el puerto: ${app.get('port')}`)
 }
 
 main()

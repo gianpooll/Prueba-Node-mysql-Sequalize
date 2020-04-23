@@ -2,29 +2,37 @@ extends ../plantilla
 
 block contenido
 
-		div(class="text-center mb-4	border border-primary rounded")
-			h1 Listado de usuarios
+	- if(error)
+		div(class="row")
+			div(class="col col-sm-6 mx-auto")
+				div(class="alert alert-warning alert-dismissible fade show" role="alert")
+					strong 
+					button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+						span(aria-hidden="true") &times;
+						
+	div(class="text-center mb-4	border border-primary rounded")
+		h1 Listado de usuarios
 
-		// --------- TABLA DE CONTENIDO DE USUARIOS --------------
-		table(class="table table-bordered table-hover text-center table-sm table-striped")
-			thead(class="bg-dark text-white text-center")
-				tr
-					th(scope="col") ID USUARIO
-					th(scope="col") NOMBRE USUARIO
-					th(scope="col") EMAIL USUARIO
-					th(scope="col") NICK NAME
-					th(scope="col") CONTRASEÑA
-					th(scope="col") EDITAR
-					th(scope="col") ELIMINAR
-			tbody
-			for item in usuarios
-				tr
-					td #{item.idusuario}
-					td #{item.nombre_usuario}
-					td #{item.email}
-					td #{item.usuario}
-					td #{item.contrasena}
-					td
-						button(class="btn btn-warning btn-sm" href="#") EDITAR
-					td
-						button(class="btn btn-primary btn-sm" href="#") Eliminar
+	// --------- TABLA DE CONTENIDO DE USUARIOS --------------
+	table(class="table table-bordered table-hover text-center table-sm table-striped")
+		thead(class="bg-dark text-white text-center")
+			tr
+				th(scope="col") ID USUARIO
+				th(scope="col") NOMBRE USUARIO
+				th(scope="col") EMAIL USUARIO
+				th(scope="col") NICK NAME
+				th(scope="col") CONTRASEÑA
+				th(scope="col") EDITAR
+				th(scope="col") ELIMINAR
+		tbody
+		for item in usuarios
+			tr
+				td #{item.idusuario}
+				td #{item.nombre_usuario}
+				td #{item.email}
+				td #{item.usuario}
+				td #{item.contrasena}
+				td
+					a(class="btn btn-warning btn-sm" href=`/usuarios-editar/${item.idusuario}`) EDITAR
+				td
+					button(class="btn btn-primary btn-sm" href="#") Eliminar
