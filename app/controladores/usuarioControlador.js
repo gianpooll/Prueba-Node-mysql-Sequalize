@@ -29,11 +29,6 @@ async function crearUsuarios(req, res){
 		res.render('./usuarios/crearUsuario', { error })
 		console.log(error)
 	}
-	if (nuevoUsuario.contrasena != nuevoUsuario.contrasena2) {
-		let error2 = "Las contaseñas no coinciden... Por favor vueva a intentarlo"
-		res.render('./usuarios/crearUsuario', { error2 })
-		console.log(error2)
-	}
 	let salt = bcrypt.genSalt(8, async (err, salt) => {
 		const contraHash = await bcrypt.hash(nuevoUsuario.contrasena, salt)
 		console.log(contraHash)
