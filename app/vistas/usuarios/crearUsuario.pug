@@ -4,7 +4,7 @@ block contenido
 
 	- if (error)
 			div(class="row mb-4")
-				div(class="alert alert-warning alert-dismissible fade show col-sm-6 mx-auto" role="alert")
+				div(class="alert alert-warning alert-dismissible fade show col-sm-6 mx-auto text-center" role="alert")
 					strong Por favor ingresa todos los campos requeridos
 					button(type="button" class="close" data-dismiss="alert" aria-label="Close")
 						span(aria-hidden="true") &times;
@@ -35,6 +35,11 @@ block contenido
 							h5 Contraseña:
 						div(class="col-sm-7")
 							input(type="password" class="form-control" name="contrasena")
+					div(class="form-group row")
+						label(for="contrasena2" class="col-sm-4 col-form-label")
+							h5 Comfirme su Contraseña:
+						div(class="col-sm-7")
+							input(type="password" class="form-control" name="contrasena2")
 				
 				
 					div(class="form-group row")

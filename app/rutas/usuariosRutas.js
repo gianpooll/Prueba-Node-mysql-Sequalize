@@ -5,9 +5,6 @@ const UsuarioControlador = require('../controladores/usuarioControlador')
 //Busca todos los usuarios en la base de datos
 rutas.get('/usuarios', UsuarioControlador.verUsuarios)
 
-//Buscar un usuario por el Id en la base e datos
-rutas.get('/usuarios/:id', UsuarioControlador.verUnUsuario)
-
 // Envia el formulario para crear un usuario
 rutas.get('/usuarios-nuevo', UsuarioControlador.formularioCrearUsuario)
 

@@ -1,5 +1,6 @@
 'use strict'
 
+const bcrypt = require("bcryptjs")
 const UsuarioModelo = require('../database').usuario
 
 // Funcion que busca todos los usuarios en la base de datos
@@ -21,31 +22,34 @@ function formularioCrearUsuario (req, res) {
 
 // Funcion que crea un usuario en la base de datos
 async function crearUsuarios(req, res){
-
+	let error = ""
 	let nuevoUsuario = req.body
-	console.log(nuevoUsuario)
-
-	if(nuevoUsuario.nombre_usuario == "" || nuevoUsuario.email == "" || nuevoUsuario.usuario == "" || nuevoUsuario.contrasena == ""){
+	if(nuevoUsuario.nombre_usuario == "" || nuevoUsuario.email == "" || nuevoUsuario.usuario == "" || nuevoUsuario.contrasena == "" || nuevoUsuario.contrasena2 == ""){
 		let error = "Por favor llena todos los campos del formulario"
 		res.render('./usuarios/crearUsuario', { error })
-	}else{
-		await UsuarioModelo.create(nuevoUsuario)
+		console.log(error)
+	}
+	if (nuevoUsuario.contrasena != nuevoUsuario.contrasena2) {
+		let error2 = "Las contaseñas no coinciden... Por favor vueva a intentarlo"
+		res.render('./usuarios/crearUsuario', { error2 })
+		console.log(error2)
+	}
+	/* let salt = bcrypt.genSalt(8, async (err, salt) => {
+		const contraHash = await bcrypt.hash(nuevoUsuario.contrasena, salt)
+		console.log(contraHash)
+		let nombre_usuario = nuevoUsuario.nombre_usuario
+		let email = nuevoUsuario.email
+		let usuario = nuevoUsuario.usuario
+		let contrasena = contraHash
+		let usuarioNuevo = {
+			nombre_usuario,
+			email,
+			usuario,
+			contrasena
+		}
+		await UsuarioModelo.create(usuarioNuevo)
 		res.redirect('/usuarios')
-	}
-
-}
-
-//Funscion que busca un usario en la base de datos
-async function verUnUsuario (req, res){
-
-	let idUsuario = req.params.id
-	try{
-		const usuario = await UsuarioModelo.findOne({ where: {idusuario: idUsuario} })
-		res.json(usuario)
-	}catch(err){
-		res.status(400).json({msj: `Error al buscar el usuario: ${err}`})
-	}
-
+	}) */
 }
 
 // Funcion que enviw el formulario de edicion de Usuarios
@@ -88,7 +92,6 @@ async function eliminarUsuario (req, res){
 module.exports = {
 	verUsuarios,
 	crearUsuarios,
-	verUnUsuario,
 	editarUsuario,
 	eliminarUsuario,
 	formularioCrearUsuario,
