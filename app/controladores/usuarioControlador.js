@@ -34,7 +34,7 @@ async function crearUsuarios(req, res){
 		res.render('./usuarios/crearUsuario', { error2 })
 		console.log(error2)
 	}
-	/* let salt = bcrypt.genSalt(8, async (err, salt) => {
+	let salt = bcrypt.genSalt(8, async (err, salt) => {
 		const contraHash = await bcrypt.hash(nuevoUsuario.contrasena, salt)
 		console.log(contraHash)
 		let nombre_usuario = nuevoUsuario.nombre_usuario
@@ -49,7 +49,7 @@ async function crearUsuarios(req, res){
 		}
 		await UsuarioModelo.create(usuarioNuevo)
 		res.redirect('/usuarios')
-	}) */
+	})
 }
 
 // Funcion que enviw el formulario de edicion de Usuarios
