@@ -1,0 +1,31 @@
+extends ../plantilla
+
+block contenido
+
+	div(class="col-md-6 mx-auto")
+		div(class="card")
+			div(class="card-header text-center bg-info text-white")
+				h4(class="card-title") Agregar Usuario
+			form(action="/usuarios/nuevo" method="POST")
+				div(class="card-body")
+					div(class="form-group row")
+						label(for="nombre_usuario" class="col-sm-4 col-form-label")
+							h5 Nombre:
+						div(class="col-sm-7")
+							input(type="text" class="form-control" autofocus name="nombre_usuario" required)
+					div(class="form-group row")
+						label(for="email" class="col-sm-4 col-form-label")
+							h5 Email:
+						div(class="col-sm-7")
+							input(type="email" class="form-control" name="email")
+					div(class="form-group row")
+						label(for="usuario" class="col-sm-4 col-form-label")
+							h5 NickName:
+						div(class="col-sm-7")
+							input(type="usuario" class="form-control" name="usuario")
+				
+				
+					div(class="form-group row")
+						div(class="col-sm-6 mx-auto")
+							button(type="submit" class="btn btn-success mr-3") Agregar..
+							buton(type="reset" class="btn btn-warning ml-3") Cancelar..

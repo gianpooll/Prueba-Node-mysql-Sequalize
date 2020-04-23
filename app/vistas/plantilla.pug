@@ -1,0 +1,42 @@
+doctype html
+html(lang='es')
+
+	head
+		meta(charset='utf-8')
+		title AppFenix
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		// ---- Css de BoostWatch
+		link(href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.min.css" rel="stylesheet")
+		link(rel="stylesheet", href="./style.css")
+
+
+	body
+
+		// ---- Barra de Navegacion de la Pagina
+		nav(class="navbar navbar-expand-lg navbar-dark bg-primary")
+			div(class="container")
+				a(class="navbar-brand" href="/") FENIX-APP
+				button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation")
+					span(class="navbar-toggler-icon")
+				div(class="collapse navbar-collapse" id="navbarNavDropdown")
+					ul(class="navbar-nav")
+						li(class="nav-item dropdown active ml-4")
+							a(class="nav-link dropdown-toggle" href="#" id="botonCategorias" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Categorias
+							div(class="dropdown-menu" aria-labelledby="botonCategorias")
+								a(class="dropdown-item" href="#") Ver Categorias
+								a(class="dropdown-item" href="#") Agregar Categorias
+						li(class="nav-item dropdown active ml-4")
+							a(class="nav-link dropdown-toggle" href="#" id="botonUsuarios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Usuarios
+							div(class="dropdown-menu" aria-labelledby="botonUsuarios")
+								a(class="dropdown-item" href="/usuarios") Ver Usuarios
+								a(class="dropdown-item" href="/usuario/crear") Agreagar Usuarios
+
+		div(class="container mt-4")
+			block contenido
+
+		// ----Jquery Bootstrap 4
+		script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+		// ----Popper de Bootstrap 4
+		script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js")
+		// ----JavaScript de BBotstrap 4
+		script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js")
