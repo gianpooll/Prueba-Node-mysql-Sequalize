@@ -18,9 +18,9 @@ rutas.post('/usuarios-guardar', UsuarioControlador.crearUsuarios)
 rutas.get('/usuarios-editar/:id', UsuarioControlador.formEditarUsuario)
 
 //Edita un usuario en la base de datos
-rutas.put('/usuarios-editado', UsuarioControlador.editarUsuario)
+rutas.put('/usuarios-editado/:id', UsuarioControlador.editarUsuario)
 
 //Elimina un usuario en la base de datos
-rutas.delete('/usuarios/eliminar/:id', UsuarioControlador.eliminarUsuario)
+rutas.delete('/usuarios-eliminar/:id', UsuarioControlador.eliminarUsuario)
 
 module.exports = rutas

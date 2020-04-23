@@ -62,24 +62,19 @@ async function formEditarUsuario (req, res) {
 
 // Funcion que edita un usuario en la base de datos
 async function editarUsuario (req, res){
+	let idUsuario = req.params.id
 	let nuevosDatos = req.body
-
-	console.log(nuevosDatos)
-
-	res.send(nuevosDatos)
-
-	/* try{
-		const nUsuario = await UsuarioModelo.update(nuevosDatos, { where: {idusuario: idUsuario} })
+	try{
+		await UsuarioModelo.update(nuevosDatos, { where: {idusuario: idUsuario} })
 		res.redirect('/usuarios')
 	}catch(err){
 		res.status(400).json({msj: `Error al actualizar en la base de datos: ${err}`})
-	} */
+	}
 
 }
 
 // Funcion que elimina usuarios en la base de datos
 async function eliminarUsuario (req, res){
-
 	let idUsuario = req.params.id
 	try{
 		const eliminado = await UsuarioModelo.destroy({ where: { idusuario: idUsuario } })

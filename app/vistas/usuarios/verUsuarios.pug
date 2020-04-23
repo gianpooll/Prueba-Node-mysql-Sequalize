@@ -21,7 +21,6 @@ block contenido
 				th(scope="col") NOMBRE USUARIO
 				th(scope="col") EMAIL USUARIO
 				th(scope="col") NICK NAME
-				th(scope="col") CONTRASEÑA
 				th(scope="col") EDITAR
 				th(scope="col") ELIMINAR
 		tbody
@@ -31,8 +30,9 @@ block contenido
 				td #{item.nombre_usuario}
 				td #{item.email}
 				td #{item.usuario}
-				td #{item.contrasena}
 				td
-					a(class="btn btn-warning btn-sm" href=`/usuarios-editar/${item.idusuario}`) EDITAR
+					a(class="btn btn-warning" href=`/usuarios-editar/${item.idusuario}`) EDITAR
 				td
-					button(class="btn btn-primary btn-sm" href="#") Eliminar
+					form(action=`/usuarios-eliminar/${item.idusuario}?_method=DELETE` method="POST")
+						input(type="hidden", name="_method" value="DELETE")
+						button(type="submit" class="btn btn-primary") Eliminar
